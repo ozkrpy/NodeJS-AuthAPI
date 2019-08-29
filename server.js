@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 let jwt = require('jsonwebtoken');
-let config = require('../configs/config');
+let config = require('./configs/config');
 let middleware = require('./middleware');
 let cors = require('cors');
 
