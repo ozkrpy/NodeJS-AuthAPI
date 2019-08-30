@@ -9,23 +9,30 @@ class HandlerGenerator {
     login(req, res) {
         let username = req.body.username;
         let password = req.body.password;
+        console.log("entro al login:", username, ",", password)
 
         // For the given username fetch user from DB
         let mockedUsername = 'admin';
         let mockedPassword = 'password';
         if (username && password) {
             if (username === mockedUsername && password === mockedPassword) {
+                console.log("valido OK:", username, ",", password)
+
                 //esta es la respuesta que va al front-end
                 let token = jwt.sign({ isAuthenticated: true, usuarioRol: 'admin', usuarioId: username },
                     config.secret, {
                         expiresIn: '1h' // expires in 1 hour
                     }
                 );
-                // return the JWT token for the future API calls
+                console.log("token:", token)
+                    // return the JWT token for the future API calls
                 res.json({
+                    status: 200,
                     isAuthenticated: true,
-                    usuarioRol: 'admin', //debe traer el rol de la db
-                    usuarioId: username,
+                    id: 1,
+                    username: username,
+                    firstName: "nombre",
+                    lastName: "apellido",
                     token: token
                 });
             } else {
